@@ -1,4 +1,4 @@
-
+/* CSS */
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +9,7 @@ body {
   background: #f0f4f8;
   color: #333;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 header {
   background: linear-gradient(to right, #0077b6, #00b4d8);
@@ -56,6 +57,21 @@ header {
 .gallery-images img:hover {
   transform: scale(1.05);
 }
+.hours {
+  padding: 40px 20px;
+  background: #fff;
+  text-align: center;
+}
+.hours table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+.hours th, .hours td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
 .about, .contact {
   padding: 40px 20px;
   text-align: center;
@@ -67,6 +83,23 @@ footer {
   background: #023e8a;
   color: white;
   padding: 20px;
+}
+.social-media a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.social-media a:hover {
+  text-decoration: underline;
+}
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 @keyframes fadeSlide {
   from { opacity: 0; transform: translateY(20px); }
