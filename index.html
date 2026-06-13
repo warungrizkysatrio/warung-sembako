@@ -1,1105 +1,529 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Warung Rizky Satrio</title>
-        <link rel="icon" type="image/png" href="favicon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Warung Rizky Satrio</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --spacing-xs: 8px; --spacing-sm: 12px; --spacing-md: 16px; --spacing-lg: 24px; --spacing-xl: 32px;
+      --border-radius-sm: 8px; --border-radius-md: 12px; --border-radius-lg: 20px; --border-radius-xl: 24px;
+      --font-size-sm: 0.8125rem; --font-size-md: 0.9375rem; --font-size-lg: 1.0625rem; --font-size-xl: 1.25rem; --font-size-xxl: 1.5625rem;
+      --transition-speed: 0.2s;
+      
+      /* Light Mode Palette */
+      --color-primary: #1B325F; --color-primary-light: #3A6073; --color-primary-dark: #0A192F;
+      --color-accent: #FF9500; --color-accent-light: #FFB340;
+      
+      /* Optimasi: BG Gradient dibikin super simpel */
+      --color-background: #f5f7fa;
+      --color-background-alt: #f8f9fa; --color-background-elevated: #ffffff;
+      --color-surface: #f0f2f5; --color-text: #1C1C1E; --color-text-secondary: #6C6C6E;
+      --color-border: rgba(0, 0, 0, 0.06);
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --color-shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.08);
+      
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --color-background-rgb: 255, 255, 255;
 
-        <style>
-            :root {
-                --spacing-xs: 8px;
-                --spacing-sm: 12px;
-                --spacing-md: 16px;
-                --spacing-lg: 24px;
-                --spacing-xl: 32px;
-                --border-radius-sm: 8px;
-                --border-radius-md: 12px;
-                --border-radius-lg: 20px;
-                --border-radius-xl: 24px;
-                --font-size-sm: 0.8125rem;
-                --font-size-md: 0.9375rem;
-                --font-size-lg: 1.0625rem;
-                --font-size-xl: 1.25rem;
-                --font-size-xxl: 1.5625rem;
-                --transition-speed: 0.2s;
+      --skeleton-bg: #e2e8f0;
+      --skeleton-shimmer: rgba(255, 255, 255, 0.5);
+    }
 
-                /* Light Mode Palette */
-                --color-primary: #1b325f;
-                --color-primary-light: #3a6073;
-                --color-primary-dark: #0a192f;
-                --color-accent: #ff9500;
-                --color-accent-light: #ffb340;
+    [data-theme="dark"] {
+      /* Semi-Navy Dark Mode Palette */
+      --color-primary: #5CC5EF; --color-primary-light: #86D5F8; --color-primary-dark: #1B325F;
+      --color-accent: #FF9F0A; --color-accent-light: #FFC75F;
+      
+      /* Optimasi: BG Gradient dibikin super simpel */
+      --color-background: #0A192F;
+      --color-background-alt: #0A192F; --color-background-elevated: #112240;
+      --color-surface: #1B325F; --color-text: #F5F5F7; --color-text-secondary: #A1A1A6;
+      --color-border: rgba(92, 197, 239, 0.1);
+      
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --color-shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.5);
+      
+      --glass-bg: rgba(17, 34, 64, 0.85);
+      --glass-border: rgba(92, 197, 239, 0.15);
+      --color-background-rgb: 10, 25, 47;
 
-                --color-background: linear-gradient(
-                    135deg,
-                    #f5f7fa 0%,
-                    #e8ecf1 100%
-                );
-                --color-background-alt: #f8f9fa;
-                --color-background-elevated: #ffffff;
-                --color-surface: #f0f2f5;
-                --color-text: #1c1c1e;
-                --color-text-secondary: #6c6c6e;
-                --color-border: rgba(0, 0, 0, 0.06);
+      --skeleton-bg: #1e293b;
+      --skeleton-shimmer: rgba(255, 255, 255, 0.05);
+    }
 
-                --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-                --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-                --color-shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.08);
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes shimmer { 100% { transform: translateX(100%); } }
 
-                --glass-bg: rgba(255, 255, 255, 0.85);
-                --glass-border: rgba(0, 0, 0, 0.08);
-                --color-background-rgb: 255, 255, 255;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+      line-height: 1.52; overflow-x: hidden; background: var(--color-background); color: var(--color-text); min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-md); }
+    img { max-width: 100%; height: auto; display: block; border-radius: var(--border-radius-sm); }
+    
+    h1, h2, h3 { font-weight: 700; line-height: 1.22; margin-bottom: var(--spacing-sm); letter-spacing: -0.02em; }
+    h1 { font-size: clamp(1.75rem, 4.5vw, 2.5rem); }
+    h2 { font-size: clamp(1.35rem, 3.5vw, 1.75rem); }
+    p { margin-bottom: var(--spacing-md); opacity: 0.9; }
 
-                /* Skeleton Colors Light */
-                --skeleton-bg: #e2e8f0;
-                --skeleton-shimmer: rgba(255, 255, 255, 0.5);
-            }
+    .section-title { text-align: center; margin-bottom: var(--spacing-lg); position: relative; padding-bottom: var(--spacing-sm); }
+    .section-title::after {
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 44px; height: 3px; background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light)); border-radius: 2px;
+    }
+    .section-padding { padding: var(--spacing-xl) 0; }
 
-            [data-theme="dark"] {
-                /* Semi-Navy Dark Mode Palette */
-                --color-primary: #5cc5ef;
-                --color-primary-light: #86d5f8;
-                --color-primary-dark: #1b325f;
-                --color-accent: #ff9f0a;
-                --color-accent-light: #ffc75f;
+    .scroll-reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1), transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    }
+    .scroll-reveal.active { opacity: 1; transform: translateY(0); }
 
-                --color-background: linear-gradient(
-                    135deg,
-                    #0a192f 0%,
-                    #020c1b 100%
-                );
-                --color-background-alt: #0a192f;
-                --color-background-elevated: #112240;
-                --color-surface: #1b325f;
-                --color-text: #f5f5f7;
-                --color-text-secondary: #a1a1a6;
-                --color-border: rgba(92, 197, 239, 0.1);
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: var(--spacing-sm) 0;
+      background: rgba(var(--color-background-rgb), 0.85); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      border-bottom: 1px solid var(--color-border); transition: all var(--transition-speed) ease;
+    }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; }
+    .navbar-logo-container { width: 38px; height: 38px; }
+    .navbar-logo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-                --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-                --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-                --color-shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.5);
+    #theme-toggle {
+      background: var(--color-surface); border: none; cursor: pointer; width: 36px; height: 36px;
+      border-radius: var(--border-radius-sm); display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; color: var(--color-text);
+    }
 
-                --glass-bg: rgba(17, 34, 64, 0.85);
-                --glass-border: rgba(92, 197, 239, 0.15);
-                --color-background-rgb: 10, 25, 47;
+    .header { text-align: center; padding: calc(var(--spacing-xl) * 1.2) 0 var(--spacing-md); margin-top: 50px; animation: fadeIn 0.6s ease-out; }
+    .subtitle { font-size: var(--font-size-lg); opacity: 0.75; }
 
-                /* Skeleton Colors Dark */
-                --skeleton-bg: #1e293b;
-                --skeleton-shimmer: rgba(255, 255, 255, 0.05);
-            }
+    /* Hero Section */
+    .hero {
+      height: 50vh; min-height: 340px; display: flex; align-items: center; justify-content: center; text-align: center;
+      background: linear-gradient(rgba(10, 25, 47, 0.65), rgba(10, 25, 47, 0.65)), url('images/satu.webp') center/cover no-repeat;
+      color: white; border-radius: var(--border-radius-xl); margin: 0 var(--spacing-md); overflow: hidden;
+    }
+    /* Optimasi: backdrop-filter desktop ringan (4px) */
+    .hero-content { max-width: 620px; padding: var(--spacing-lg); border-radius: var(--border-radius-lg); background: rgba(0,0,0,0.3); backdrop-filter: blur(4px); animation: scale 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .hero h2 { font-size: var(--font-size-xxl); color: white; }
 
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-            @keyframes scale {
-                from {
-                    opacity: 0;
-                    transform: scale(0.95);
-                }
-                to {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-            @keyframes shimmer {
-                100% {
-                    transform: translateX(100%);
-                }
-            }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px;
+      border-radius: var(--border-radius-md); text-decoration: none; font-weight: 600; transition: all var(--transition-speed); border: none; cursor: pointer;
+    }
+    .btn.primary { background: #0A192F; color: white; border: 1px solid rgba(255,255,255,0.2); }
+    [data-theme="dark"] .btn.primary { background: var(--color-primary); color: #0A192F; font-weight: 700; }
+    .btn.primary:hover { transform: translateY(-1px); opacity: 0.9; }
+    .btn:active { transform: scale(0.98); }
 
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html {
-                scroll-behavior: smooth;
-                font-size: 16px;
-            }
-            body {
-                font-family:
-                    -apple-system, BlinkMacSystemFont, "SF Pro Display",
-                    "Inter", sans-serif;
-                line-height: 1.52;
-                overflow-x: hidden;
-                background: var(--color-background);
-                color: var(--color-text);
-                min-height: 100vh;
-                -webkit-font-smoothing: antialiased;
-            }
-            .container {
-                width: 100%;
-                max-width: 1100px;
-                margin: 0 auto;
-                padding: 0 var(--spacing-md);
-            }
-            img {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                border-radius: var(--border-radius-sm);
-            }
+    /* Carousel / Photo Slider (Optimasi: Properti will-change dicabut dari CSS) */
+    .carousel-container {
+      position: relative; max-width: 800px; margin: 0 auto; overflow: hidden;
+      border-radius: var(--border-radius-xl); box-shadow: var(--shadow-md); border: 1px solid var(--color-border);
+    }
+    .carousel-track { display: flex; transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1); width: 100%; }
+    .carousel-slide { min-width: 100%; width: 100%; height: 380px; position: relative; background: var(--skeleton-bg); overflow: hidden; }
+    
+    .carousel-slide.loading::after {
+      content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent 0%, var(--skeleton-shimmer) 20%, var(--skeleton-shimmer) 60%, transparent 100%);
+      animation: shimmer 1.4s infinite;
+    }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; opacity: 0; transition: opacity 0.3s ease; }
+    .carousel-slide.loaded img { opacity: 1; }
 
-            h1,
-            h2,
-            h3 {
-                font-weight: 700;
-                line-height: 1.22;
-                margin-bottom: var(--spacing-sm);
-                letter-spacing: -0.02em;
-            }
-            h1 {
-                font-size: clamp(1.75rem, 4.5vw, 2.5rem);
-            }
-            h2 {
-                font-size: clamp(1.35rem, 3.5vw, 1.75rem);
-            }
-            p {
-                margin-bottom: var(--spacing-md);
-                opacity: 0.9;
-            }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%); background: rgba(10, 25, 47, 0.7);
+      color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; z-index: 10; transition: background var(--transition-speed);
+    }
+    .carousel-btn:hover { background: #112240; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+    
+    .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); border: none; cursor: pointer; transition: background var(--transition-speed); }
+    .carousel-dot.active { background: white; transform: scale(1.25); }
 
-            .section-title {
-                text-align: center;
-                margin-bottom: var(--spacing-lg);
-                position: relative;
-                padding-bottom: var(--spacing-sm);
-            }
-            .section-title::after {
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 44px;
-                height: 3px;
-                background: linear-gradient(
-                    90deg,
-                    var(--color-primary),
-                    var(--color-primary-light)
-                );
-                border-radius: 2px;
-            }
-            .section-padding {
-                padding: var(--spacing-xl) 0;
-            }
+    .card { padding: var(--spacing-lg); border-radius: var(--border-radius-xl); background: var(--color-background-elevated); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+    
+    /* Hubungi Kami */
+    .contact-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-md); }
+    .contact-item-card {
+      background: var(--color-background-alt); border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md); padding: var(--spacing-md); display: flex;
+      align-items: center; gap: var(--spacing-md); transition: all var(--transition-speed);
+    }
+    .contact-item-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: var(--color-primary-light); }
+    .contact-icon-box {
+      background: var(--color-surface); font-size: 1.3rem; width: 44px; height: 44px;
+      border-radius: var(--border-radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-text-box h4 { font-size: var(--font-size-md); font-weight: 600; margin-bottom: 2px; color: var(--color-primary-light); }
+    [data-theme="dark"] .contact-text-box h4 { color: var(--color-primary); }
+    .contact-text-box p { font-size: var(--font-size-sm); margin: 0; opacity: 0.85; line-height: 1.4; }
 
-            /* IDE 1: STYLE SCROLL REVEAL ANIMATION */
-            .scroll-reveal {
-                opacity: 0;
-                transform: translateY(24px);
-                transition:
-                    opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1),
-                    transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-            }
-            .scroll-reveal.active {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    /* Footer & Sosmed */
+    .footer { padding: var(--spacing-xl) 0 var(--spacing-lg); text-align: center; border-top: 1px solid var(--color-border); background: var(--color-background-alt); }
+    .footer p { font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--spacing-sm); }
+    
+    .social-media { display: flex; gap: var(--spacing-sm); justify-content: center; flex-wrap: wrap; margin-top: var(--spacing-sm); }
+    .social-link {
+      display: inline-flex; align-items: center; justify-content: center; text-decoration: none; 
+      color: var(--color-text); background: var(--color-background-elevated); 
+      border: 1px solid var(--color-border); padding: 10px 20px; border-radius: var(--border-radius-md);
+      font-size: var(--font-size-sm); font-weight: 600; box-shadow: var(--shadow-sm); transition: all var(--transition-speed) ease;
+    }
+    .social-link:hover { transform: translateY(-2px); border-color: var(--color-primary-light); color: var(--color-primary-light); box-shadow: var(--shadow-md); }
+    [data-theme="dark"] .social-link:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
-            /* Navbar */
-            .navbar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1000;
-                padding: var(--spacing-sm) 0;
-                background: rgba(var(--color-background-rgb), 0.85);
-                backdrop-filter: blur(4px);
-                -webkit-backdrop-filter: blur(4px);
-                border-bottom: 1px solid var(--color-border);
-                transition: all var(--transition-speed) ease;
-            }
-            .navbar .container {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .navbar-logo-container {
-                width: 38px;
-                height: 38px;
-            }
-            .navbar-logo {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 50%;
-            }
+    /* Floating WA (Optimasi: Perbaikan kode path SVG utuh) */
+    .floating-wa {
+      position: fixed; bottom: 20px; right: 20px; background: #30D158; color: white;
+      width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition-speed); z-index: 1001; text-decoration: none;
+    }
+    .floating-wa svg { width: 24px; height: 24px; fill: currentColor; }
+    .floating-wa:hover { transform: translateY(-3px) scale(1.04); background: #25A550; }
 
-            #theme-toggle {
-                background: var(--color-surface);
-                border: none;
-                cursor: pointer;
-                width: 36px;
-                height: 36px;
-                border-radius: var(--border-radius-sm);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-                overflow: hidden;
-                color: var(--color-text);
-            }
+    /* Google Map Box Frame */
+    .map-container { border-radius: var(--border-radius-xl); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border); }
+    .map-container iframe { width: 100%; height: 360px; border: 0; display: block; background: var(--color-surface); }
 
-            .header {
-                text-align: center;
-                padding: calc(var(--spacing-xl) * 1.2) 0 var(--spacing-md);
-                margin-top: 50px;
-                animation: fadeIn 0.6s ease-out;
-            }
-            .subtitle {
-                font-size: var(--font-size-lg);
-                opacity: 0.75;
-            }
+    /* Products Grid */
+    .products-section { text-align: center; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-md); justify-content: center; }
+    .product-card {
+      background: var(--color-background-elevated); border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md); padding: var(--spacing-md); transition: all var(--transition-speed);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: var(--color-shadow-strong); border-color: var(--color-accent); }
+    .product-icon-img { width: 44px; height: 44px; margin-bottom: var(--spacing-xs); transition: transform var(--transition-speed) cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .product-card:hover .product-icon-img { transform: scale(1.15); }
+    .product-card h3 { font-size: var(--font-size-sm); font-weight: 600; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 100%; margin: 0; }
 
-            /* Hero Section */
-            .hero {
-                height: 50vh;
-                min-height: 340px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                background:
-                    linear-gradient(
-                        rgba(10, 25, 47, 0.65),
-                        rgba(10, 25, 47, 0.65)
-                    ),
-                    url("images/satu.webp") center/cover no-repeat;
-                color: white;
-                border-radius: var(--border-radius-xl);
-                margin: 0 var(--spacing-md);
-                overflow: hidden;
-            }
-            .hero-content {
-                max-width: 620px;
-                padding: var(--spacing-lg);
-                border-radius: var(--border-radius-lg);
-                background: rgba(0, 0, 0, 0.3);
-                backdrop-filter: blur(4px);
-                animation: scale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            }
-            .hero h2 {
-                font-size: var(--font-size-xxl);
-                color: white;
-            }
+    #theme-toggle .icon-sun, #theme-toggle .icon-moon { position: absolute; transition: transform 0.4s ease, opacity 0.4s ease; }
+    [data-theme="light"] #theme-toggle .icon-sun { opacity: 1; transform: scale(1); }
+    [data-theme="light"] #theme-toggle .icon-moon { opacity: 0; transform: scale(0) rotate(90deg); }
+    [data-theme="dark"] #theme-toggle .icon-sun { opacity: 0; transform: scale(0) rotate(-90deg); }
+    [data-theme="dark"] #theme-toggle .icon-moon { opacity: 1; transform: scale(1); }
 
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                padding: 11px 22px;
-                border-radius: var(--border-radius-md);
-                text-decoration: none;
-                font-weight: 600;
-                transition: all var(--transition-speed);
-                border: none;
-                cursor: pointer;
-            }
-            .btn.primary {
-                background: #0a192f;
-                color: white;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-            [data-theme="dark"] .btn.primary {
-                background: var(--color-primary);
-                color: #0a192f;
-                font-weight: 700;
-            }
-            .btn.primary:hover {
-                transform: translateY(-1px);
-                opacity: 0.9;
-            }
-            .btn:active {
-                transform: scale(0.98);
-            }
+    /* OPTIMASI TOTAL DI MOBILE (No blur filter, pure solid opacity) */
+    @media screen and (max-width: 768px) {
+      .navbar {
+        background: rgb(255, 255, 255); /* Ganti warna solid murni tanpa efek blur */
+        backdrop-filter: none; -webkit-backdrop-filter: none;
+      }
+      [data-theme="dark"] .navbar { background: #0A192F; }
+      
+      .hero-content { 
+        background: rgba(0, 0, 0, 0.75); /* Opacity solid digelapkan dikit biar kontras dapet tanpa blur */
+        backdrop-filter: none; -webkit-backdrop-filter: none; 
+      }
+      
+      .section-padding { padding: var(--spacing-lg) 0; }
+      .header { padding: calc(var(--spacing-xl) * 0.9) 0 var(--spacing-sm); }
+      .hero { height: 42vh; min-height: 280px; margin: 0 var(--spacing-sm); }
+      .carousel-container { border-radius: 0; margin: 0 calc(-1 * var(--spacing-md)); }
+      .carousel-slide { height: 260px; }
+      .carousel-btn { width: 34px; height: 34px; }
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xs); }
+      .product-card { padding: var(--spacing-sm); }
+      .product-icon-img { width: 38px; height: 38px; }
+      .map-container iframe { height: 280px; }
+      .social-link { width: 100%; padding: 12px; }
+      .social-media { gap: var(--spacing-xs); padding: 0 var(--spacing-sm); }
+    }
+    @media screen and (max-width: 480px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-info { gap: var(--spacing-sm); }
+      .contact-item-card { padding: var(--spacing-sm); }
+    }
+  </style>
+</head>
+<body>
 
-            /* Carousel / Photo Slider & IDE 5: SKELETON FRAMEWORK */
-            .carousel-container {
-                position: relative;
-                max-width: 800px;
-                margin: 0 auto;
-                overflow: hidden;
-                border-radius: var(--border-radius-xl);
-                box-shadow: var(--shadow-md);
-                border: 1px solid var(--color-border);
-            }
-            .carousel-track {
-                display: flex;
-                transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-                width: 100%;
-                will-change: transform;
-            }
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo-container">
+        <img src="images/LOGONYAINIYA.webp" alt="Warung Rizky Satrio" class="navbar-logo">
+      </div>
+      <div class="nav-controls">
+        <button id="theme-toggle" aria-label="Ubah tema">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-            /* Wrapper slide buat nampung skeleton loading */
-            .carousel-slide {
-                min-width: 100%;
-                width: 100%;
-                height: 380px;
-                position: relative;
-                background: var(--skeleton-bg);
-                overflow: hidden;
-            }
+  <header class="header">
+    <div class="container">
+      <h1>Warung Rizky Satrio</h1>
+      <p class="subtitle">Warung Keluarga – Harga Terjangkau, Ramah, dan Terpercaya</p>
+    </div>
+  </header>
 
-            /* Animasi shimmer skeleton */
-            .carousel-slide.loading::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                transform: translateX(-100%);
-                background: linear-gradient(
-                    90deg,
-                    transparent 0%,
-                    var(--skeleton-shimmer) 20%,
-                    var(--skeleton-shimmer) 60%,
-                    transparent 100%
-                );
-                animation: shimmer 1.4s infinite;
-            }
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Selamat Datang Di Warung Kami</h2>
+      <p>Warung Rizky Satrio hadir di tengah masyarakat sebagai tempat belanja harian yang bersahabat</p>
+      <a href="#gallery" class="btn primary">Lihat Galeri</a>
+    </div>
+  </section>
 
-            /* Gambar transisi halus pas beres loading */
-            .carousel-slide img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 0;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            .carousel-slide.loaded img {
-                opacity: 1;
-            }
+  <section id="gallery" class="gallery section-padding scroll-reveal">
+    <div class="container">
+      <h2 class="section-title">Galeri Warung Kami</h2>
+      <div class="carousel-container">
+        <button class="carousel-btn prev" aria-label="Sebelumnya">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="carousel-btn next" aria-label="Berikutnya">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <div class="carousel-track">
+          <div class="carousel-slide loading"><img src="images/dua.webp" alt="Foto Warung 1"></div>
+          <div class="carousel-slide loading"><img src="images/tiga.webp" alt="Foto Warung 2"></div>
+          <div class="carousel-slide loading"><img src="images/foto9.webp" alt="Foto Warung 3"></div>
+          <div class="carousel-slide loading"><img src="images/empat.webp" alt="Foto Warung 4"></div>
+          <div class="carousel-slide loading"><img src="images/lima.webp" alt="Foto Warung 5"></div>
+        </div>
+        <div class="carousel-dots">
+          <button class="carousel-dot active"></button>
+          <button class="carousel-dot"></button>
+          <button class="carousel-dot"></button>
+          <button class="carousel-dot"></button>
+          <button class="carousel-dot"></button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            .carousel-btn {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: rgba(10, 25, 47, 0.7);
-                color: white;
-                border: none;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10;
-                transition: background var(--transition-speed);
-            }
-            .carousel-btn:hover {
-                background: #112240;
-            }
-            .carousel-btn.prev {
-                left: 12px;
-            }
-            .carousel-btn.next {
-                right: 12px;
-            }
+  <section class="about section-padding scroll-reveal">
+    <div class="container">
+      <div class="card">
+        <h2 class="section-title">Tentang Kami</h2>
+        <p>Warung Rizky Satrio adalah usaha keluarga yang berdiri sejak tahun 2021. Kami hadir untuk memberikan kenyamanan dan kemudahan belanja kebutuhan sehari-hari dengan pelayanan yang ramah serta harga terjangkau.</p>
+      </div>
+    </div>
+  </section>
 
-            .carousel-dots {
-                position: absolute;
-                bottom: 12px;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                gap: 8px;
-                z-index: 10;
-            }
-            .carousel-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.4);
-                border: none;
-                cursor: pointer;
-                transition: background var(--transition-speed);
-            }
-            .carousel-dot.active {
-                background: white;
-                transform: scale(1.25);
-            }
+  <section class="products-section section-padding scroll-reveal">
+    <div class="container">
+      <h2 class="section-title">Produk Unggulan</h2>
+      <div class="products-grid">
+        
+        <div class="product-card">
+          <img class="product-icon-img" src="images/svg-file/indomie.svg" alt="Mie Instan" loading="lazy">
+          <h3>Mie Instan</h3>
+        </div>
+        
+        <div class="product-card">
+          <img class="product-icon-img" src="images/svg-file/rice-cooker-svgrepo-com.svg" alt="Beras" loading="lazy">
+          <h3>Beras</h3>
+        </div>
 
-            .card {
-                padding: var(--spacing-lg);
-                border-radius: var(--border-radius-xl);
-                background: var(--color-background-elevated);
-                border: 1px solid var(--color-border);
-                box-shadow: var(--shadow-sm);
-            }
+        <div class="product-card">
+          <img class="product-icon-img" src="images/svg-file/telur.svg" alt="Telur" loading="lazy">
+          <h3>Telur</h3>
+        </div>
+        
+        <div class="product-card">
+          <img class="product-icon-img" src="images/svg-file/sabun.svg" alt="Sabun" loading="lazy">
+          <h3>Sabun</h3>
+        </div>
+        
+        <div class="product-card">
+          <img class="product-icon-img" src="images/svg-file/minuman.svg" alt="Minuman" loading="lazy">
+          <h3>Minuman</h3>
+        </div>
+        
+        <div class="product-card">
+          <img class="product-icon-img" src="images/svg-file/rokok.svg" alt="Rokok" loading="lazy">
+          <h3>Rokok</h3>
+        </div>
 
-            /* Hubungi Kami Card */
-            .contact-info {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: var(--spacing-md);
-                margin-top: var(--spacing-md);
-            }
-            .contact-item-card {
-                background: var(--color-background-alt);
-                border: 1px solid var(--color-border);
-                border-radius: var(--border-radius-md);
-                padding: var(--spacing-md);
-                display: flex;
-                align-items: center;
-                gap: var(--spacing-md);
-                transition: all var(--transition-speed);
-            }
-            .contact-item-card:hover {
-                transform: translateY(-2px);
-                box-shadow: var(--shadow-sm);
-                border-color: var(--color-primary-light);
-            }
-            .contact-icon-box {
-                background: var(--color-surface);
-                font-size: 1.3rem;
-                width: 44px;
-                height: 44px;
-                border-radius: var(--border-radius-sm);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-            }
-            .contact-text-box h4 {
-                font-size: var(--font-size-md);
-                font-weight: 600;
-                margin-bottom: 2px;
-                color: var(--color-primary-light);
-            }
-            [data-theme="dark"] .contact-text-box h4 {
-                color: var(--color-primary);
-            }
-            .contact-text-box p {
-                font-size: var(--font-size-sm);
-                margin: 0;
-                opacity: 0.85;
-                line-height: 1.4;
-            }
+      </div>
+    </div>
+  </section>
 
-            /* Footer Solid & Klop Tema Semenavy */
-            .footer {
-                padding: var(--spacing-xl) 0 var(--spacing-lg);
-                text-align: center;
-                border-top: 1px solid var(--color-border);
-                background: var(--color-background-alt);
-            }
-            .footer p {
-                font-size: var(--font-size-sm);
-                color: var(--color-text-secondary);
-                margin-bottom: var(--spacing-sm);
-            }
+  <section class="map-section section-padding scroll-reveal">
+    <div class="container">
+      <h2 class="section-title">Lokasi Kami</h2>
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=-5.344344606073777,%20104.76591450268958&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
 
-            .social-media {
-                display: flex;
-                gap: var(--spacing-sm);
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-top: var(--spacing-sm);
-            }
-            .social-link {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                text-decoration: none;
-                color: var(--color-text);
-                background: var(--color-background-elevated);
-                border: 1px solid var(--color-border);
-                padding: 10px 20px;
-                border-radius: var(--border-radius-md);
-                font-size: var(--font-size-sm);
-                font-weight: 600;
-                box-shadow: var(--shadow-sm);
-                transition: all var(--transition-speed) ease;
-            }
-            .social-link:hover {
-                transform: translateY(-2px);
-                border-color: var(--color-primary-light);
-                color: var(--color-primary-light);
-                box-shadow: var(--shadow-md);
-            }
-            [data-theme="dark"] .social-link:hover {
-                border-color: var(--color-primary);
-                color: var(--color-primary);
-            }
-
-            /* Floating WA */
-            .floating-wa {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                background: #30d158;
-                color: white;
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all var(--transition-speed);
-                z-index: 1001;
-                text-decoration: none;
-            }
-            .floating-wa svg {
-                width: 22px;
-                height: 22px;
-                fill: white;
-            }
-            .floating-wa:hover {
-                transform: translateY(-3px) scale(1.04);
-                background: #25a550;
-            }
-
-            /* Google Map Box Frame */
-            .map-container {
-                border-radius: var(--border-radius-xl);
-                overflow: hidden;
-                box-shadow: var(--shadow-md);
-                border: 1px solid var(--color-border);
-            }
-            .map-container iframe {
-                width: 100%;
-                height: 360px;
-                border: 0;
-                display: block;
-                background: var(--color-surface);
-            }
-
-            /* Products Grid */
-            .products-section {
-                text-align: center;
-            }
-            .products-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: var(--spacing-md);
-                margin-top: var(--spacing-md);
-                justify-content: center;
-            }
-            .product-card {
-                background: var(--color-background-elevated);
-                border: 1px solid var(--color-border);
-                border-radius: var(--border-radius-md);
-                padding: var(--spacing-md);
-                transition: all var(--transition-speed);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
-            .product-card:hover {
-                transform: translateY(-4px);
-                box-shadow: var(--color-shadow-strong);
-                border-color: var(--color-accent);
-            }
-            .product-icon-img {
-                width: 44px;
-                height: 44px;
-                margin-bottom: var(--spacing-xs);
-                transition: transform var(--transition-speed)
-                    cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            }
-            .product-card:hover .product-icon-img {
-                transform: scale(1.15);
-            }
-            .product-card h3 {
-                font-size: var(--font-size-sm);
-                font-weight: 600;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                width: 100%;
-                margin: 0;
-            }
-
-            #theme-toggle .icon-sun,
-            #theme-toggle .icon-moon {
-                position: absolute;
-                transition:
-                    transform 0.4s ease,
-                    opacity 0.4s ease;
-            }
-            [data-theme="light"] #theme-toggle .icon-sun {
-                opacity: 1;
-                transform: scale(1);
-            }
-            [data-theme="light"] #theme-toggle .icon-moon {
-                opacity: 0;
-                transform: scale(0) rotate(90deg);
-            }
-            [data-theme="dark"] #theme-toggle .icon-sun {
-                opacity: 0;
-                transform: scale(0) rotate(-90deg);
-            }
-            [data-theme="dark"] #theme-toggle .icon-moon {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            /* MOBILE OPTIMIZATION */
-            @media screen and (max-width: 768px) {
-                .section-padding {
-                    padding: var(--spacing-lg) 0;
-                }
-                .header {
-                    padding: calc(var(--spacing-xl) * 0.9) 0 var(--spacing-sm);
-                }
-                .hero {
-                    height: 42vh;
-                    min-height: 280px;
-                    margin: 0 var(--spacing-sm);
-                }
-                .carousel-container {
-                    border-radius: 0;
-                    margin: 0 calc(-1 * var(--spacing-md));
-                }
-                .carousel-slide {
-                    height: 260px;
-                }
-                .carousel-btn {
-                    width: 34px;
-                    height: 34px;
-                }
-                .products-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: var(--spacing-xs);
-                }
-                .product-card {
-                    padding: var(--spacing-sm);
-                }
-                .product-icon-img {
-                    width: 38px;
-                    height: 38px;
-                }
-                .map-container iframe {
-                    height: 280px;
-                }
-                .social-link {
-                    width: 100%;
-                    padding: 12px;
-                }
-                .social-media {
-                    gap: var(--spacing-xs);
-                    padding: 0 var(--spacing-sm);
-                }
-            }
-            @media screen and (max-width: 480px) {
-                .products-grid {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                .contact-info {
-                    gap: var(--spacing-sm);
-                }
-                .contact-item-card {
-                    padding: var(--spacing-sm);
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-logo-container">
-                    <img
-                        src="images/LOGONYAINIYA.webp"
-                        alt="Warung Rizky Satrio"
-                        class="navbar-logo"
-                    />
-                </div>
-                <div class="nav-controls">
-                    <button id="theme-toggle" aria-label="Ubah tema">
-                        <span class="icon-sun">☀️</span>
-                        <span class="icon-moon">🌙</span>
-                    </button>
-                </div>
+  <section class="contact section-padding scroll-reveal">
+    <div class="container">
+      <div class="card">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="contact-info">
+          
+          <div class="contact-item-card">
+            <div class="contact-icon-box">📞</div>
+            <div class="contact-text-box">
+              <h4>Nomor Telepon / WA</h4>
+              <p>+62 812-8562-7911</p>
+              <p>+62 856-9442-3177</p>
             </div>
-        </nav>
-
-        <header class="header">
-            <div class="container">
-                <h1>Warung Rizky Satrio</h1>
-                <p class="subtitle">
-                    Warung Keluarga – Harga Terjangkau, Ramah, dan Terpercaya
-                </p>
+          </div>
+          
+          <div class="contact-item-card">
+            <div class="contact-icon-box">✉️</div>
+            <div class="contact-text-box">
+              <h4>Email Resmi</h4>
+              <p>warungrizkysatrio@gmail.com</p>
             </div>
-        </header>
-
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Selamat Datang Di Warung Kami</h2>
-                <p>
-                    Warung Rizky Satrio hadir di tengah masyarakat sebagai
-                    tempat belanja harian yang bersahabat
-                </p>
-                <a href="#gallery" class="btn primary">Lihat Galeri</a>
+          </div>
+          
+          <div class="contact-item-card">
+            <div class="contact-icon-box">📍</div>
+            <div class="contact-text-box">
+              <h4>Alamat Toko</h4>
+              <p>Tanggamus, Lampung 35377</p>
             </div>
-        </section>
+          </div>
 
-        <!-- Slider 5 Foto Beranda + IDE 5: Skeleton Loading Setup -->
-        <section id="gallery" class="gallery section-padding scroll-reveal">
-            <div class="container">
-                <h2 class="section-title">Galeri Warung Kami</h2>
-                <div class="carousel-container">
-                    <button class="carousel-btn prev" aria-label="Sebelumnya">
-                        <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
-                    <button class="carousel-btn next" aria-label="Berikutnya">
-                        <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </button>
-                    <div class="carousel-track">
-                        <div class="carousel-slide loading">
-                            <img src="images/dua.webp" alt="Foto Warung 1" />
-                        </div>
-                        <div class="carousel-slide loading">
-                            <img src="images/tiga.webp" alt="Foto Warung 2" />
-                        </div>
-                        <div class="carousel-slide loading">
-                            <img src="images/foto9.webp" alt="Foto Warung 3" />
-                        </div>
-                        <div class="carousel-slide loading">
-                            <img src="images/empat.webp" alt="Foto Warung 4" />
-                        </div>
-                        <div class="carousel-slide loading">
-                            <img src="images/lima.webp" alt="Foto Warung 5" />
-                        </div>
-                    </div>
-                    <div class="carousel-dots">
-                        <button class="carousel-dot active"></button>
-                        <button class="carousel-dot"></button>
-                        <button class="carousel-dot"></button>
-                        <button class="carousel-dot"></button>
-                        <button class="carousel-dot"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="about section-padding scroll-reveal">
-            <div class="container">
-                <div class="card">
-                    <h2 class="section-title">Tentang Kami</h2>
-                    <p>
-                        Warung Rizky Satrio adalah usaha keluarga yang berdiri
-                        sejak tahun 2021. Kami hadir untuk memberikan kenyamanan
-                        dan kemudahan belanja kebutuhan sehari-hari dengan
-                        pelayanan yang ramah serta harga terjangkau.
-                    </p>
-                </div>
-            </div>
-        </section>
+  <a href="https://wa.me/6281285627911?text=Halo%20Warung%20Rizky%20Satrio..." class="floating-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+      <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+  </a>
 
-        <section class="products-section section-padding scroll-reveal">
-            <div class="container">
-                <h2 class="section-title">Produk Unggulan</h2>
-                <div class="products-grid">
-                    <!-- Mie Instan -->
-                    <div class="product-card">
-                        <img
-                            class="product-icon-img"
-                            src="images/svg-file/indomie.svg"
-                            alt="Mie Instan"
-                            loading="lazy"
-                        />
-                        <h3>Mie Instan</h3>
-                    </div>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Warung Rizky Satrio. All rights reserved.</p>
+      <div class="social-media">
+        <a href="https://www.tiktok.com/@warungrizkysatrio" target="_blank" class="social-link">TikTok</a>
+        <a href="https://www.instagram.com" target="_blank" class="social-link">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61574912243676" target="_blank" class="social-link">Facebook</a>
+      </div>
+    </div>
+  </footer>
 
-                    <!-- Beras -->
-                    <div class="product-card">
-                        <img
-                            class="product-icon-img"
-                            src="images/svg-file/rice-cooker-svgrepo-com.svg"
-                            alt="Beras"
-                            loading="lazy"
-                        />
-                        <h3>Beras</h3>
-                    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('theme-toggle');
+      const htmlElement = document.documentElement;
+      
+      const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      htmlElement.setAttribute('data-theme', savedTheme);
+      
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      });
 
-                    <!-- Telur -->
-                    <div class="product-card">
-                        <img
-                            class="product-icon-img"
-                            src="images/svg-file/telur.svg"
-                            alt="Telur"
-                            loading="lazy"
-                        />
-                        <h3>Telur</h3>
-                    </div>
-
-                    <!-- Sabun -->
-                    <div class="product-card">
-                        <img
-                            class="product-icon-img"
-                            src="images/svg-file/sabun.svg"
-                            alt="Sabun"
-                            loading="lazy"
-                        />
-                        <h3>Sabun</h3>
-                    </div>
-
-                    <!-- Minuman -->
-                    <div class="product-card">
-                        <img
-                            class="product-icon-img"
-                            src="images/svg-file/minuman.svg"
-                            alt="Minuman"
-                            loading="lazy"
-                        />
-                        <h3>Minuman</h3>
-                    </div>
-
-                    <!-- Rokok -->
-                    <div class="product-card">
-                        <img
-                            class="product-icon-img"
-                            src="images/svg-file/rokok.svg"
-                            alt="Rokok"
-                            loading="lazy"
-                        />
-                        <h3>Rokok</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="map-section section-padding scroll-reveal">
-            <div class="container">
-                <h2 class="section-title">Lokasi Kami</h2>
-                <div class="map-container">
-                    <iframe
-                        src="https://maps.google.com/maps?q=-5.344344606073777,%20104.76591450268958&t=&z=16&ie=UTF8&iwloc=&output=embed"
-                        allowfullscreen=""
-                        loading="lazy"
-                    ></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact section-padding scroll-reveal">
-            <div class="container">
-                <div class="card">
-                    <h2 class="section-title">Hubungi Kami</h2>
-                    <div class="contact-info">
-                        <!-- Card Telpon -->
-                        <div class="contact-item-card">
-                            <div class="contact-icon-box">📞</div>
-                            <div class="contact-text-box">
-                                <h4>Nomor Telepon / WA</h4>
-                                <p>+62 812-8562-7911</p>
-                                <p>+62 856-9442-3177</p>
-                            </div>
-                        </div>
-
-                        <!-- Card Email -->
-                        <div class="contact-item-card">
-                            <div class="contact-icon-box">✉️</div>
-                            <div class="contact-text-box">
-                                <h4>Email Resmi</h4>
-                                <p>warungrizkysatrio@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <!-- Card Alamat -->
-                        <div class="contact-item-card">
-                            <div class="contact-icon-box">📍</div>
-                            <div class="contact-text-box">
-                                <h4>Alamat Toko</h4>
-                                <p>Tanggamus, Lampung 35377</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Floating WA -->
-        <a
-            href="https://wa.me/6281285627911?text=Halo%20Warung%20Rizky%20Satrio..."
-            class="floating-wa"
-            target="_blank"
-            rel="noopener"
-            aria-label="WhatsApp"
-        >
-            <svg viewBox="0 0 448 512">
-                <path
-                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
-                />
-            </svg>
-        </a>
-
-        <footer class="footer">
-            <div class="container">
-                <p>© 2026 Warung Rizky Satrio. All rights reserved.</p>
-                <div class="social-media">
-                    <a
-                        href="https://www.tiktok.com/@warungrizkysatrio"
-                        target="_blank"
-                        class="social-link"
-                        >TikTok</a
-                    >
-                    <a
-                        href="https://www.instagram.com"
-                        target="_blank"
-                        class="social-link"
-                        >Instagram</a
-                    >
-                    <a
-                        href="https://www.facebook.com/profile.php?id=61574912243676"
-                        target="_blank"
-                        class="social-link"
-                        >Facebook</a
-                    >
-                </div>
-            </div>
-        </footer>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // Logic Theme Toggle
-                const themeToggle = document.getElementById("theme-toggle");
-                const htmlElement = document.documentElement;
-
-                const savedTheme =
-                    localStorage.getItem("theme") ||
-                    (window.matchMedia("(prefers-color-scheme: dark)").matches
-                        ? "dark"
-                        : "light");
-                htmlElement.setAttribute("data-theme", savedTheme);
-
-                themeToggle.addEventListener("click", () => {
-                    const currentTheme = htmlElement.getAttribute("data-theme");
-                    const newTheme =
-                        currentTheme === "light" ? "dark" : "light";
-                    htmlElement.setAttribute("data-theme", newTheme);
-                    localStorage.setItem("theme", newTheme);
-                });
-
-                // IDE 5: LOGIC SKELETON LOADING MANAGER
-                const slidesWithSkeleton =
-                    document.querySelectorAll(".carousel-slide");
-                slidesWithSkeleton.forEach((slide) => {
-                    const img = slide.querySelector("img");
-                    if (img) {
-                        // Kalau gambar sudah ke-cache ato kelar loading duluan
-                        if (img.complete) {
-                            slide.classList.remove("loading");
-                            slide.classList.add("loaded");
-                        } else {
-                            img.addEventListener("load", () => {
-                                slide.classList.remove("loading");
-                                slide.classList.add("loaded");
-                            });
-                        }
-                    }
-                });
-
-                // Logic Carousel / Image Slider
-                const track = document.querySelector(".carousel-track");
-                const slides = Array.from(track.children);
-                const nextButton = document.querySelector(".carousel-btn.next");
-                const prevButton = document.querySelector(".carousel-btn.prev");
-                const dotsContainer = document.querySelector(".carousel-dots");
-                const dots = Array.from(dotsContainer.children);
-
-                let currentIndex = 0;
-
-                const updateSlider = (index) => {
-                    track.style.transform = `translateX(-${index * 100}%)`;
-                    dots.forEach((dot) => dot.classList.remove("active"));
-                    dots[index].classList.add("active");
-                    currentIndex = index;
-                };
-
-                nextButton.addEventListener("click", () => {
-                    let index =
-                        currentIndex === slides.length - 1
-                            ? 0
-                            : currentIndex + 1;
-                    updateSlider(index);
-                });
-
-                prevButton.addEventListener("click", () => {
-                    let index =
-                        currentIndex === 0
-                            ? slides.length - 1
-                            : currentIndex - 1;
-                    updateSlider(index);
-                });
-
-                dots.forEach((dot, index) => {
-                    dot.addEventListener("click", () => updateSlider(index));
-                });
-
-                // Swipe support mobile
-                let startX = 0;
-                track.addEventListener(
-                    "touchstart",
-                    (e) => (startX = e.touches[0].clientX),
-                );
-                track.addEventListener("touchend", (e) => {
-                    const endX = e.changedTouches[0].clientX;
-                    if (startX - endX > 50) nextButton.click();
-                    if (endX - startX > 50) prevButton.click();
-                });
-
-                // IDE 1: LOGIC SCROLL REVEAL ANIMATION (INTERSECTION OBSERVER)
-                const revealElements =
-                    document.querySelectorAll(".scroll-reveal");
-                const revealObserver = new IntersectionObserver(
-                    (entries, observer) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add("active");
-                                // Sekali muncul, matiin observer buat element ini biar hemat memory HP
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    },
-                    {
-                        threshold: 0.08, // Element muncul 8% di layar langsung ke-trigger
-                        rootMargin: "0px 0px -20px 0px",
-                    },
-                );
-
-                revealElements.forEach((el) => revealObserver.observe(el));
+      // Skeleton Loading Manager
+      const slidesWithSkeleton = document.querySelectorAll('.carousel-slide');
+      slidesWithSkeleton.forEach(slide => {
+        const img = slide.querySelector('img');
+        if (img) {
+          if (img.complete) {
+            slide.classList.remove('loading');
+            slide.classList.add('loaded');
+          } else {
+            img.addEventListener('load', () => {
+              slide.classList.remove('loading');
+              slide.classList.add('loaded');
             });
-        </script>
-    </body>
+          }
+        }
+      });
+
+      // Carousel / Image Slider
+      const track = document.querySelector('.carousel-track');
+      const slides = Array.from(track.children);
+      const nextButton = document.querySelector('.carousel-btn.next');
+      const prevButton = document.querySelector('.carousel-btn.prev');
+      const dotsContainer = document.querySelector('.carousel-dots');
+      const dots = Array.from(dotsContainer.children);
+      
+      let currentIndex = 0;
+
+      const updateSlider = (index) => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+        currentIndex = index;
+      };
+
+      nextButton.addEventListener('click', () => {
+        let index = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+        updateSlider(index);
+      });
+
+      prevButton.addEventListener('click', () => {
+        let index = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+        updateSlider(index);
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => updateSlider(index));
+      });
+
+      // OPTIMASI: Dynamic will-change injection pas event swipe berjalan (Hemat RAM HP)
+      let startX = 0;
+      track.addEventListener('touchstart', e => {
+        track.style.willChange = 'transform'; // Suntik saat interaksi dimulai
+        startX = e.touches[0].clientX;
+      }, { passive: true });
+
+      track.addEventListener('touchend', e => {
+        const endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextButton.click();
+        if (endX - startX > 50) prevButton.click();
+        
+        // Hapus properti setelah transisi kelar biar gak bebani browser
+        setTimeout(() => {
+          track.style.willChange = 'auto';
+        }, 350);
+      }, { passive: true });
+
+      // Scroll Reveal Animation (Intersection Observer)
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: "0px 0px -20px 0px"
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+    });
+  </script>
+</body>
 </html>
