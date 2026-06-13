@@ -1,1225 +1,1005 @@
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Warung Rizky Satrio</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    /* Optimized clean design */
-    :root {
-      --spacing-xs: 8px;
-      --spacing-sm: 12px;
-      --spacing-md: 16px;
-      --spacing-lg: 24px;
-      --spacing-xl: 32px;
-      
-      --border-radius-sm: 8px;
-      --border-radius-md: 12px;
-      --border-radius-lg: 20px;
-      
-      --font-size-xs: 0.7rem;
-      --font-size-sm: 0.8125rem;
-      --font-size-md: 0.9375rem;
-      --font-size-lg: 1.0625rem;
-      --font-size-xl: 1.25rem;
-      --font-size-xxl: 1.5625rem;
-      --font-size-xxxl: 2.25rem;
-      
-      --transition-speed: 0.2s;
-      
-      /* Clean modern palette */
-      --color-primary: #007AFF;
-      --color-primary-light: #5AC8FA;
-      --color-primary-dark: #0051D5;
-      
-      --color-accent: #FF9500;
-      --color-accent-light: #FFB340;
-      
-      --color-success: #34C759;
-      --color-warning: #FF9F0A;
-      --color-error: #FF3B30;
-      
-      --color-background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
-      --color-background-alt: #f8f9fa;
-      --color-background-elevated: #ffffff;
-      
-      --color-surface: #f0f2f5;
-      
-      --color-text: #1C1C1E;
-      --color-text-secondary: #6C6C6E;
-      --color-text-tertiary: #8E8E93;
-      
-      --color-border: rgba(0, 0, 0, 0.06);
-      
-      --color-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      --color-shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.08);
-      
-      --color-background-rgb: 255, 255, 255;
-    }
-
-    [data-theme="dark"] {
-      --color-primary: #0A84FF;
-      --color-primary-light: #5AC8FA;
-      --color-primary-dark: #0063C9;
-      
-      --color-accent: #FF9F0A;
-      --color-accent-light: #FFC75F;
-      
-      --color-success: #30D158;
-      --color-warning: #FFAB00;
-      --color-error: #FF453A;
-      
-      --color-background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
-      --color-background-alt: #1c1c1e;
-      --color-background-elevated: #2c2c2e;
-      
-      --color-surface: #3a3a3c;
-      
-      --color-text: #F5F5F7;
-      --color-text-secondary: #A1A1A6;
-      --color-text-tertiary: #636366;
-      
-      --color-border: rgba(255, 255, 255, 0.08);
-      
-      --color-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-      --color-shadow-strong: 0 4px 20px rgba(0, 0, 0, 0.4);
-      
-      --color-background-rgb: 28, 28, 30;
-    }
-
-    /* Animation Keyframes */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes scale {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    /* Clean optimized styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.55;
-      overflow-x: hidden;
-      background: var(--color-background);
-      color: var(--color-text);
-      min-height: 100vh;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 var(--spacing-md);
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      border-radius: var(--border-radius-sm);
-    }
-
-    /* Typography */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: 650;
-      line-height: 1.25;
-      margin-bottom: var(--spacing-sm);
-      letter-spacing: -0.02em;
-    }
-
-    h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-    h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
-    h3 { font-size: clamp(1.2rem, 3vw, 1.5rem); }
-
-    p { margin-bottom: var(--spacing-md); letter-spacing: 0.01em; }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: var(--spacing-lg);
-      position: relative;
-      padding-bottom: var(--spacing-sm);
-      font-weight: 700;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
-      border-radius: 2px;
-    }
-
-    .section-padding {
-      padding: var(--spacing-xl) 0;
-    }
-
-    /* Optimized navbar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: var(--spacing-sm) 0;
-      background: var(--color-background-elevated);
-      border-bottom: 1px solid var(--color-border);
-      transition: all var(--transition-speed) ease;
-    }
-
-    .navbar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .navbar-logo-container {
-      position: relative;
-      width: 44px;
-      height: 44px;
-      flex-shrink: 0;
-    }
-
-    .navbar-logo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .nav-controls {
-      display: flex;
-      align-items: center;
-    }
-
-    #theme-toggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: var(--font-size-lg);
-      padding: var(--spacing-xs);
-      border-radius: var(--border-radius-sm);
-      position: relative;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      color: var(--color-text);
-      background-color: var(--color-surface);
-    }
-
-    /* Header */
-    .header {
-      text-align: center;
-      padding: calc(var(--spacing-xxl) * 2) 0 var(--spacing-xl);
-      margin-top: 60px;
-      animation: fadeIn 1s ease-out;
-    }
-
-    .subtitle {
-      font-size: var(--font-size-lg);
-      opacity: 0.8;
-    }
-
-    /* Hero Section */
-    .hero {
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background-size: cover;
-      background-position: center;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('images/satu.jpeg');
-      color: white;
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: var(--spacing-xl);
-      border-radius: var(--border-radius-lg);
-      background-color: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-      animation: scale 1s ease-out;
-    }
-
-    .hero h2 {
-      font-size: var(--font-size-xxl);
-      margin-bottom: var(--spacing-md);
-    }
-
-    .hero p {
-      font-size: var(--font-size-lg);
-      margin-bottom: var(--spacing-lg);
-    }
-
-    /* Optimized button */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-sm) var(--spacing-lg);
-      border-radius: var(--border-radius-md);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all var(--transition-speed) ease;
-      cursor: pointer;
-      text-align: center;
-      border: none;
-      color: white;
-    }
-
-    .btn.primary {
-      background: var(--color-primary);
-    }
-
-    .btn.primary:hover {
-      background: var(--color-primary-dark);
-    }
-
-    .btn:active {
-      transform: scale(0.98);
-    }
-
-    /* Optimized gallery */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: var(--spacing-md);
-    }
-
-    .gallery-item {
-      border-radius: var(--border-radius-md);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-speed) ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .gallery-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .gallery-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--color-shadow-strong);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Optimized card */
-    .card {
-      padding: var(--spacing-lg);
-      border-radius: var(--border-radius-lg);
-      background: var(--color-background-elevated);
-      border: 1px solid var(--color-border);
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-speed) ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--color-shadow-strong);
-    }
-
-    .hours-table {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .hours-row {
-      display: flex;
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--spacing-sm) 0;
-    }
-
-    .hours-row:last-child {
-      border-bottom: none;
-    }
-
-    .hours-day {
-      width: 40%;
-      font-weight: 500;
-    }
-
-    .hours-time {
-      width: 60%;
-      text-align: right;
-    }
-
-    /* Contact */
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-md);
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--spacing-md);
-    }
-
-    .contact-icon {
-      font-size: var(--font-size-xl);
-      flex-shrink: 0;
-    }
-
-    .contact-text p {
-      margin-bottom: var(--spacing-xs);
-    }
-
-    .contact-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* macOS footer */
-    .footer {
-      padding: var(--spacing-xl) 0;
-      text-align: center;
-      background: linear-gradient(to top, var(--color-background-alt), transparent);
-      border-top: 1px solid var(--glass-border);
-      position: relative;
-    }
-
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
-    }
-
-    .footer .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--spacing-sm);
-    }
-
-    .copyright {
-      margin-bottom: var(--spacing-md);
-      font-size: var(--font-size-sm);
-      color: var(--color-text-secondary);
-    }
-
-    /* macOS social media */
-    .social-media {
-      display: flex;
-      gap: var(--spacing-md);
-      justify-content: center;
-      align-items: center;
-      margin-top: var(--spacing-md);
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--color-text);
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
-      transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 12px 18px;
-      border-radius: var(--border-radius-lg);
-      font-size: var(--font-size-sm);
-      font-weight: 500;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-      opacity: 0;
-      transition: opacity var(--transition-speed) ease;
-    }
-
-    .social-link:hover::before {
-      opacity: 1;
-    }
-
-    .social-link i {
-      font-size: 1.3em;
-    }
-
-    .social-link:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md), 0 3px 12px rgba(0, 0, 0, 0.15);
-      border-color: var(--color-primary);
-    }
-
-    .social-link.tiktok:hover {
-      background: linear-gradient(135deg, rgba(0, 242, 234, 0.15), rgba(255, 0, 80, 0.15));
-      border-color: rgba(0, 242, 234, 0.4);
-      color: #00f2ea;
-    }
-
-    .social-link.instagram:hover {
-      background: linear-gradient(135deg, rgba(64, 93, 230, 0.15), rgba(253, 29, 29, 0.15));
-      border-color: rgba(64, 93, 230, 0.4);
-      color: #405de6;
-    }
-
-    .social-link.facebook:hover {
-      background: rgba(24, 119, 242, 0.15);
-      border-color: rgba(24, 119, 242, 0.4);
-      color: #1877f2;
-    }
-
-    /* Optimized floating WA */
-    .floating-wa {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #30D158;
-      color: white;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--color-shadow-strong);
-      transition: all var(--transition-speed) ease;
-      z-index: 1001;
-      font-weight: 600;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .floating-wa i.fab.fa-whatsapp {
-      font-size: 1.8em;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
-
-    .floating-wa:hover {
-      transform: translateY(-3px) scale(1.05);
-      background: #25A550;
-      box-shadow: 0 6px 20px rgba(48, 209, 88, 0.4);
-    }
-
-    /* Google Maps */
-    .map-container {
-      border-radius: var(--border-radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--glass-border);
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 320px;
-      border: 0;
-      display: block;
-    }
-
-    /* Clean products section */
-    .products-section {
-      position: relative;
-      padding-top: var(--spacing-lg);
-      padding-bottom: var(--spacing-lg);
-    }
-
-    .products-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
-      border-radius: 2px;
-    }
-
-    .products-section::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
-      border-radius: 2px;
-    }
-
-    .products-section h2.section-title {
-      padding-top: var(--spacing-md);
-      margin-bottom: 0;
-    }
-
-    .products-section h2.section-title::after {
-      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
-      width: 50px;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: var(--spacing-md);
-      padding: var(--spacing-md) 0;
-      align-items: stretch;
-    }
-
-    .product-card {
-      background: var(--color-background-elevated);
-      border: 1px solid var(--color-border);
-      border-radius: var(--border-radius-md);
-      padding: var(--spacing-md);
-      text-align: center;
-      transition: all var(--transition-speed) ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--color-shadow-strong);
-      border-color: var(--color-accent-light);
-    }
-
-    .product-card .product-icon {
-      font-size: 2.8rem;
-      margin-bottom: var(--spacing-sm);
-      display: block;
-      color: var(--color-text-secondary);
-      transition: all var(--transition-speed) ease;
-      line-height: 1;
-    }
-
-    .product-card:hover .product-icon {
-      color: var(--color-accent);
-    }
-
-    .product-card h3 {
-      font-size: var(--font-size-sm);
-      font-weight: 600;
-      color: var(--color-text);
-      margin: 0;
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-    }
-
-    /* macOS status badge */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-bottom: var(--spacing-md);
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .status-open {
-      color: #30D158;
-      border-color: rgba(48, 209, 88, 0.3);
-    }
-
-    .status-closed {
-      color: #FF453A;
-      border-color: rgba(255, 69, 58, 0.3);
-    }
-
-    /* macOS testimonials */
-    .testimonials-section {
-      background: linear-gradient(to bottom, transparent, var(--color-background-alt), transparent);
-    }
-
-    .testimonial-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: var(--spacing-lg);
-      border-radius: var(--border-radius-xl);
-      border: 1px solid var(--glass-border);
-      margin-bottom: var(--spacing-md);
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      font-size: 4rem;
-      color: var(--color-primary);
-      opacity: 0.2;
-      font-family: Georgia, serif;
-      line-height: 1;
-    }
-
-    .testimonial-quote {
-      font-style: italic;
-      font-size: 1.05rem;
-      margin-bottom: var(--spacing-md);
-      color: var(--color-text);
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-    }
-
-    .testimonial-author {
-      font-weight: 600;
-      color: var(--color-primary);
-      font-size: var(--font-size-sm);
-      letter-spacing: 0.02em;
-    }
-
-    /* Dark mode icon styles */
-    #theme-toggle .icon-sun,
-    #theme-toggle .icon-moon {
-      position: absolute;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-
-    [data-theme="light"] #theme-toggle .icon-sun {
-      opacity: 1;
-      transform: translateY(0) rotate(0);
-    }
-
-    [data-theme="light"] #theme-toggle .icon-moon {
-      opacity: 0;
-      transform: translateY(10px) rotate(90deg);
-    }
-
-    [data-theme="dark"] #theme-toggle .icon-sun {
-      opacity: 0;
-      transform: translateY(-10px) rotate(-90deg);
-    }
-
-    [data-theme="dark"] #theme-toggle .icon-moon {
-      opacity: 1;
-      transform: translateY(0) rotate(0);
-    }
-
-    /* Mobile optimized */
-    @media screen and (max-width: 768px) {
-      :root {
-        --spacing-xxl: 40px;
-        --border-radius-lg: 16px;
-        --border-radius-xl: 24px;
-      }
-      
-      .section-padding {
-        padding: var(--spacing-xl) 0;
-      }
-      
-      .hero {
-        height: 75vh;
-      }
-      
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-sm);
-      }
-      
-      .card {
-        padding: var(--spacing-md);
-      }
-      
-      .contact-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      
-      .floating-wa {
-        bottom: 16px;
-        right: 16px;
-        padding: 12px 18px;
-        font-size: var(--font-size-sm);
-      }
-      
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-sm);
-      }
-      
-      .product-card {
-        padding: var(--spacing-sm);
-      }
-      
-      .product-emoji {
-        font-size: 2rem;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .navbar {
-        padding: var(--spacing-xs) 0;
-      }
-      
-      .navbar-logo-container {
-        width: 36px;
-        height: 36px;
-      }
-      
-      .navbar-logo {
-        border: 1px solid var(--color-border);
-      }
-      
-      .hero-content {
-        padding: var(--spacing-lg);
-      }
-      
-      .header {
-        padding-top: calc(var(--spacing-xl) * 1);
-      }
-      
-      .floating-wa {
-        bottom: 12px;
-        right: 12px;
-        padding: 10px 14px;
-        font-size: var(--font-size-xs);
-      }
-      
-      .floating-wa span {
-        display: none;
-      }
-      
-      .floating-wa i {
-        font-size: 1.5em !important;
-        margin: 0;
-      }
-      
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-sm);
-      }
-      
-      .product-card {
-        padding: var(--spacing-sm);
-      }
-      
-      .product-card .product-icon {
-        font-size: 2.5rem;
-      }
-      
-      .product-card h3 {
-        font-size: var(--font-size-xs);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <nav class="navbar">
-    <div class="container">
-      <div class="navbar-logo-container">
-        <img src="images/LOGONYAINIYA.png" alt="Warung Rizky Satrio" class="navbar-logo">
-      </div>
-      <div class="nav-controls">
-        <button id="theme-toggle" aria-label="Toggle dark mode">
-          <span class="icon-sun">☀️</span>
-          <span class="icon-moon">🌙</span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <header class="header">
-    <div class="container">
-      <h1>Warung Rizky Satrio</h1>
-      <p class="subtitle">Warung Keluarga – Harga Terjangkau, Ramah, dan Terpercaya</p>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h2>Selamat Datang Di Warung Kami</h2>
-        <p>Warung Rizky Satrio hadir di tengah masyarakat sebagai tempat belanja harian yang bersahabat</p>
-        <a href="#gallery" class="btn primary">Lihat Galeri</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="gallery section-padding">
-    <div class="container">
-      <h2 class="section-title">Tampilan Warung Kami</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="images/dua.jpg" alt="Foto Warung 1" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="images/tiga.jpg" alt="Foto Warung 2" loading="lazy">
-        </div>
-        <div class="gallery-item">
-          <img src="images/foto9.png" alt="Foto Warung 3" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hours section-padding">
-    <div class="container">
-      <div class="card">
-      <h2 class="section-title">Jam Operasional</h2>
-      <div id="current-status" class="status-badge">Loading...</div>
-      <div class="hours-table">
-          <div class="hours-row">
-            <div class="hours-day">Senin</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-          <div class="hours-row">
-            <div class="hours-day">Selasa</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-          <div class="hours-row">
-            <div class="hours-day">Rabu</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-          <div class="hours-row">
-            <div class="hours-day">Kamis</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-          <div class="hours-row">
-            <div class="hours-day">Jumat</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-          <div class="hours-row">
-            <div class="hours-day">Sabtu</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-          <div class="hours-row">
-            <div class="hours-day">Minggu</div>
-            <div class="hours-time">08.00 – 18.00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="about section-padding">
-    <div class="container">
-      <div class="card">
-        <h2 class="section-title">Tentang Warung Rizky Satrio</h2>
-        <p>Warung Rizky Satrio adalah usaha keluarga yang berdiri sejak tahun 2021. Kami hadir untuk memberikan kenyamanan dan kemudahan belanja kebutuhan sehari-hari.</p>
-        <p>Dengan pelayanan yang ramah dan harga yang terjangkau, kami berupaya menjadi pilihan utama masyarakat untuk memenuhi kebutuhan pokok sehari-hari.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Highlights -->
-  <section class="products-section section-padding">
-    <div class="container">
-      <h2 class="section-title">Produk Unggulan</h2>
-      <div class="products-grid">
-        <div class="product-card">
-          <i class="fas fa-utensils product-icon"></i>
-          <h3>Mie Instan</h3>
-        </div>
-        <div class="product-card">
-          <i class="fas fa-box-open product-icon"></i>
-          <h3>Beras</h3>
-        </div>
-        <div class="product-card">
-          <i class="fas fa-glass-martini-alt product-icon"></i>
-          <h3>Susu</h3>
-        </div>
-        <div class="product-card">
-          <i class="fas fa-pump-soap product-icon"></i>
-          <h3>Sabun</h3>
-        </div>
-        <div class="product-card">
-          <i class="fas fa-mug-hot product-icon"></i>
-          <h3>Minuman</h3>
-        </div>
-        <div class="product-card">
-          <i class="fas fa-smoking product-icon"></i>
-          <h3>Rokok</h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Google Maps -->
-  <section class="map-section section-padding">
-    <div class="container">
-      <h2 class="section-title">Lokasi Kami</h2>
-      <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.548841234567!2d104.765930!3d-5.344327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s-5.344327%2C%20104.765930!5e0!3m2!1sid!2sid!4v1711034567890!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact section-padding">
-    <div class="container">
-      <div class="card">
-        <h2 class="section-title">Hubungi Kami</h2>
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📞</div>
-            <div class="contact-text">
-              <p>+62 812-8562-7911</p>
-              <p>+62 856-9442-3177</p>
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Warung Rizky Satrio</title>
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --spacing-xs: 8px;
+                --spacing-sm: 12px;
+                --spacing-md: 16px;
+                --spacing-lg: 24px;
+                --spacing-xl: 32px;
+                --border-radius-sm: 8px;
+                --border-radius-md: 12px;
+                --border-radius-lg: 20px;
+                --border-radius-xl: 24px;
+                --font-size-sm: 0.8125rem;
+                --font-size-md: 0.9375rem;
+                --font-size-lg: 1.0625rem;
+                --font-size-xl: 1.25rem;
+                --font-size-xxl: 1.5625rem;
+                --transition-speed: 0.2s;
+
+                /* Light Mode Palette */
+                --color-primary: #1b325f;
+                --color-primary-light: #3a6073;
+                --color-primary-dark: #0a192f;
+                --color-accent: #ff9500;
+                --color-accent-light: #ffb340;
+
+                --color-background: linear-gradient(
+                    135deg,
+                    #f5f7fa 0%,
+                    #e8ecf1 100%
+                );
+                --color-background-alt: #f8f9fa;
+                --color-background-elevated: #ffffff;
+                --color-surface: #f0f2f5;
+                --color-text: #1c1c1e;
+                --color-text-secondary: #6c6c6e;
+                --color-border: rgba(0, 0, 0, 0.06);
+
+                --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+                --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+                --color-shadow-strong: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+                --glass-bg: rgba(255, 255, 255, 0.7);
+                --glass-border: rgba(0, 0, 0, 0.08);
+                --color-background-rgb: 255, 255, 255;
+            }
+
+            [data-theme="dark"] {
+                /* Semi-Navy Dark Mode Palette */
+                --color-primary: #5cc5ef;
+                --color-primary-light: #86d5f8;
+                --color-primary-dark: #1b325f;
+                --color-accent: #ff9f0a;
+                --color-accent-light: #ffc75f;
+
+                --color-background: linear-gradient(
+                    135deg,
+                    #0a192f 0%,
+                    #020c1b 100%
+                );
+                --color-background-alt: #0a192f;
+                --color-background-elevated: #112240;
+                --color-surface: #1b325f;
+                --color-text: #f5f5f7;
+                --color-text-secondary: #a1a1a6;
+                --color-border: rgba(92, 197, 239, 0.1);
+
+                --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+                --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+                --color-shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+                --glass-bg: rgba(17, 34, 64, 0.7);
+                --glass-border: rgba(92, 197, 239, 0.15);
+                --color-background-rgb: 10, 25, 47;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            @keyframes scale {
+                from {
+                    opacity: 0;
+                    transform: scale(0.95);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+                font-size: 16px;
+            }
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                    "Inter", sans-serif;
+                line-height: 1.52;
+                overflow-x: hidden;
+                background: var(--color-background);
+                color: var(--color-text);
+                min-height: 100vh;
+                -webkit-font-smoothing: antialiased;
+            }
+            .container {
+                width: 100%;
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 var(--spacing-md);
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                border-radius: var(--border-radius-sm);
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 700;
+                line-height: 1.22;
+                margin-bottom: var(--spacing-sm);
+                letter-spacing: -0.02em;
+            }
+            h1 {
+                font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+            }
+            h2 {
+                font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+            }
+            p {
+                margin-bottom: var(--spacing-md);
+                opacity: 0.9;
+            }
+
+            .section-title {
+                text-align: center;
+                margin-bottom: var(--spacing-lg);
+                position: relative;
+                padding-bottom: var(--spacing-sm);
+            }
+            .section-title::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 44px;
+                height: 3px;
+                background: linear-gradient(
+                    90deg,
+                    var(--color-primary),
+                    var(--color-primary-light)
+                );
+                border-radius: 2px;
+            }
+            .section-padding {
+                padding: var(--spacing-xl) 0;
+            }
+
+            /* Navbar */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                padding: var(--spacing-sm) 0;
+                background: rgba(var(--color-background-rgb), 0.85);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--color-border);
+                transition: all var(--transition-speed) ease;
+            }
+            .navbar .container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .navbar-logo-container {
+                width: 38px;
+                height: 38px;
+            }
+            .navbar-logo {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            #theme-toggle {
+                background: var(--color-surface);
+                border: none;
+                cursor: pointer;
+                width: 36px;
+                height: 36px;
+                border-radius: var(--border-radius-sm);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                overflow: hidden;
+                color: var(--color-text);
+            }
+
+            /* Fix Kepala Jenong: Padding dipangkas biar gak kejauhan dari atas */
+            .header {
+                text-align: center;
+                padding: calc(var(--spacing-xl) * 1.2) 0 var(--spacing-md);
+                margin-top: 50px;
+                animation: fadeIn 0.6s ease-out;
+            }
+            .subtitle {
+                font-size: var(--font-size-lg);
+                opacity: 0.75;
+            }
+
+            /* Hero Section */
+            .hero {
+                height: 50vh;
+                min-height: 340px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                background:
+                    linear-gradient(
+                        rgba(10, 25, 47, 0.65),
+                        rgba(10, 25, 47, 0.65)
+                    ),
+                    url("images/satu.webp") center/cover no-repeat;
+                color: white;
+                border-radius: var(--border-radius-xl);
+                margin: 0 var(--spacing-md);
+                overflow: hidden;
+            }
+            .hero-content {
+                max-width: 620px;
+                padding: var(--spacing-lg);
+                border-radius: var(--border-radius-lg);
+                background: rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(10px);
+                animation: scale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .hero h2 {
+                font-size: var(--font-size-xxl);
+                color: white;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                padding: 11px 22px;
+                border-radius: var(--border-radius-md);
+                text-decoration: none;
+                font-weight: 600;
+                transition: all var(--transition-speed);
+                border: none;
+                cursor: pointer;
+            }
+            .btn.primary {
+                background: #0a192f;
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            [data-theme="dark"] .btn.primary {
+                background: var(--color-primary);
+                color: #0a192f;
+                font-weight: 700;
+            }
+            .btn.primary:hover {
+                transform: translateY(-1px);
+                opacity: 0.9;
+            }
+            .btn:active {
+                transform: scale(0.98);
+            }
+
+            /* Carousel / Photo Slider */
+            .carousel-container {
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+                overflow: hidden;
+                border-radius: var(--border-radius-xl);
+                box-shadow: var(--shadow-md);
+                border: 1px solid var(--color-border);
+            }
+            /* Mobile performance optimization via will-change */
+            .carousel-track {
+                display: flex;
+                transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+                width: 100%;
+                will-change: transform;
+            }
+            .carousel-slide {
+                min-width: 100%;
+                width: 100%;
+                height: 380px;
+            }
+            .carousel-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0;
+            }
+
+            .carousel-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(10, 25, 47, 0.7);
+                color: white;
+                border: none;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                transition: background var(--transition-speed);
+            }
+            .carousel-btn:hover {
+                background: #112240;
+            }
+            .carousel-btn.prev {
+                left: 12px;
+            }
+            .carousel-btn.next {
+                right: 12px;
+            }
+
+            .carousel-dots {
+                position: absolute;
+                bottom: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 8px;
+                z-index: 10;
+            }
+            .carousel-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                border: none;
+                cursor: pointer;
+                transition: background var(--transition-speed);
+            }
+            .carousel-dot.active {
+                background: white;
+                transform: scale(1.25);
+            }
+
+            .card {
+                padding: var(--spacing-lg);
+                border-radius: var(--border-radius-xl);
+                background: var(--color-background-elevated);
+                border: 1px solid var(--color-border);
+                box-shadow: var(--shadow-sm);
+            }
+
+            /* Hubungi Kami Center Vertikal Mantap */
+            .contact-info {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--spacing-md);
+                margin-top: var(--spacing-md);
+            }
+            .contact-item-card {
+                background: var(--color-background-alt);
+                border: 1px solid var(--color-border);
+                border-radius: var(--border-radius-md);
+                padding: var(--spacing-md);
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-md);
+                transition: all var(--transition-speed);
+            }
+            .contact-item-card:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-sm);
+                border-color: var(--color-primary-light);
+            }
+            .contact-icon-box {
+                background: var(--color-surface);
+                font-size: 1.3rem;
+                width: 44px;
+                height: 44px;
+                border-radius: var(--border-radius-sm);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+            .contact-text-box h4 {
+                font-size: var(--font-size-md);
+                font-weight: 600;
+                margin-bottom: 2px;
+                color: var(--color-primary-light);
+            }
+            [data-theme="dark"] .contact-text-box h4 {
+                color: var(--color-primary);
+            }
+            .contact-text-box p {
+                font-size: var(--font-size-sm);
+                margin: 0;
+                opacity: 0.85;
+                line-height: 1.4;
+            }
+
+            .footer {
+                padding: var(--spacing-lg) 0;
+                text-align: center;
+                background: linear-gradient(
+                    to top,
+                    var(--color-background-alt),
+                    transparent
+                );
+                border-top: 1px solid var(--glass-border);
+            }
+            .social-media {
+                display: flex;
+                gap: var(--spacing-sm);
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: var(--spacing-md);
+            }
+            .social-link {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                text-decoration: none;
+                color: var(--color-text);
+                background: var(--glass-bg);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid var(--glass-border);
+                padding: 9px 15px;
+                border-radius: var(--border-radius-lg);
+                font-size: var(--font-size-sm);
+                font-weight: 500;
+                transition:
+                    transform var(--transition-speed),
+                    border-color var(--transition-speed);
+            }
+            .social-link:hover {
+                transform: translateY(-2px);
+                border-color: var(--color-primary);
+            }
+
+            /* Floating WA */
+            .floating-wa {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #30d158;
+                color: white;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all var(--transition-speed);
+                z-index: 1001;
+                text-decoration: none;
+            }
+            .floating-wa svg {
+                width: 22px;
+                height: 22px;
+                fill: white;
+            }
+            .floating-wa:hover {
+                transform: translateY(-3px) scale(1.04);
+                background: #25a550;
+            }
+
+            /* Google Map Box Frame */
+            .map-container {
+                border-radius: var(--border-radius-xl);
+                overflow: hidden;
+                box-shadow: var(--shadow-md);
+                border: 1px solid var(--glass-border);
+            }
+            .map-container iframe {
+                width: 100%;
+                height: 360px;
+                border: 0;
+                display: block;
+                background: var(--color-surface);
+            }
+
+            /* Products Grid Berwarna */
+            .products-section {
+                text-align: center;
+            }
+            .products-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: var(--spacing-md);
+                margin-top: var(--spacing-md);
+                justify-content: center;
+            }
+            .product-card {
+                background: var(--color-background-elevated);
+                border: 1px solid var(--color-border);
+                border-radius: var(--border-radius-md);
+                padding: var(--spacing-md);
+                transition: all var(--transition-speed);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .product-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--color-shadow-strong);
+                border-color: var(--color-accent);
+            }
+            .product-icon-img {
+                width: 44px;
+                height: 44px;
+                margin-bottom: var(--spacing-xs);
+                transition: transform var(--transition-speed)
+                    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            .product-card:hover .product-icon-img {
+                transform: scale(1.15);
+            }
+            .product-card h3 {
+                font-size: var(--font-size-sm);
+                font-weight: 600;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%;
+                margin: 0;
+            }
+
+            #theme-toggle .icon-sun,
+            #theme-toggle .icon-moon {
+                position: absolute;
+                transition:
+                    transform 0.4s ease,
+                    opacity 0.4s ease;
+            }
+            [data-theme="light"] #theme-toggle .icon-sun {
+                opacity: 1;
+                transform: scale(1);
+            }
+            [data-theme="light"] #theme-toggle .icon-moon {
+                opacity: 0;
+                transform: scale(0) rotate(90deg);
+            }
+            [data-theme="dark"] #theme-toggle .icon-sun {
+                opacity: 0;
+                transform: scale(0) rotate(-90deg);
+            }
+            [data-theme="dark"] #theme-toggle .icon-moon {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            /* ULTRA MOBILE OPTIMIZATION COY */
+            @media screen and (max-width: 768px) {
+                .section-padding {
+                    padding: var(--spacing-lg) 0;
+                }
+                .header {
+                    padding: calc(var(--spacing-xl) * 0.9) 0 var(--spacing-sm);
+                }
+                .hero {
+                    height: 42vh;
+                    min-height: 280px;
+                    margin: 0 var(--spacing-sm);
+                }
+                .carousel-container {
+                    border-radius: 0;
+                    margin: 0 calc(-1 * var(--spacing-md));
+                } /* Foto full layar hp */
+                .carousel-slide {
+                    height: 260px;
+                }
+                .carousel-btn {
+                    width: 34px;
+                    height: 34px;
+                }
+                .products-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: var(--spacing-xs);
+                }
+                .product-card {
+                    padding: var(--spacing-sm);
+                }
+                .product-icon-img {
+                    width: 38px;
+                    height: 38px;
+                }
+                .map-container iframe {
+                    height: 280px;
+                }
+            }
+            @media screen and (max-width: 480px) {
+                .products-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .contact-info {
+                    gap: var(--spacing-sm);
+                }
+                .contact-item-card {
+                    padding: var(--spacing-sm);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-logo-container">
+                    <img
+                        src="images/LOGONYAINIYA.webp"
+                        alt="Warung Rizky Satrio"
+                        class="navbar-logo"
+                    />
+                </div>
+                <div class="nav-controls">
+                    <button id="theme-toggle" aria-label="Ubah tema">
+                        <span class="icon-sun">☀️</span>
+                        <span class="icon-moon">🌙</span>
+                    </button>
+                </div>
             </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-text">
-              <p>warungrizkysatrio@gmail.com</p>
+        </nav>
+
+        <header class="header">
+            <div class="container">
+                <h1>Warung Rizky Satrio</h1>
+                <p class="subtitle">
+                    Warung Keluarga – Harga Terjangkau, Ramah, dan Terpercaya
+                </p>
             </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div class="contact-text">
-              <p>Jl. Raya Kebumen, Singosari, Kec. Talang Padang, Kabupaten Tanggamus, Lampung 35377</p>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Selamat Datang Di Warung Kami</h2>
+                <p>
+                    Warung Rizky Satrio hadir di tengah masyarakat sebagai
+                    tempat belanja harian yang bersahabat
+                </p>
+                <a href="#gallery" class="btn primary">Lihat Galeri</a>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/6281285627911?text=Halo%20Warung%20Rizky%20Satrio%2C%20saya%20mau%20tanya%20ketersediaan%20produk..." class="floating-wa" target="_blank" rel="noopener">
-    <i class="fab fa-whatsapp"></i>
-    <span>WhatsApp</span>
-  </a>
+        <section id="gallery" class="gallery section-padding">
+            <div class="container">
+                <h2 class="section-title">Galeri Warung Kami</h2>
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" aria-label="Sebelumnya">
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-btn next" aria-label="Berikutnya">
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img
+                                src="images/dua.webp"
+                                alt="Foto Warung 1"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="carousel-slide">
+                            <img
+                                src="images/tiga.webp"
+                                alt="Foto Warung 2"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="carousel-slide">
+                            <img
+                                src="images/foto9.webp"
+                                alt="Foto Warung 3"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="carousel-slide">
+                            <img
+                                src="images/empat.webp"
+                                alt="Foto Warung 4"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="carousel-slide">
+                            <img
+                                src="images/lima.webp"
+                                alt="Foto Warung 5"
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
+                    <div class="carousel-dots">
+                        <button class="carousel-dot active"></button>
+                        <button class="carousel-dot"></button>
+                        <button class="carousel-dot"></button>
+                        <button class="carousel-dot"></button>
+                        <button class="carousel-dot"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/6281285627911?text=Halo%20Warung%20Rizky%20Satrio%2C%20saya%20mau%20tanya%20ketersediaan%20produk..." class="floating-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+        <section class="about section-padding">
+            <div class="container">
+                <div class="card">
+                    <h2 class="section-title">Tentang Kami</h2>
+                    <p>
+                        Warung Rizky Satrio adalah usaha keluarga yang berdiri
+                        sejak tahun 2021. Kami hadir untuk memberikan kenyamanan
+                        dan kemudahan belanja kebutuhan sehari-hari dengan
+                        pelayanan yang ramah serta harga terjangkau.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  <footer class="footer">
-    <div class="container">
-      <p class="copyright">Ikuti media sosial kami untuk info terbaru!</p>
-      <div class="social-media">
-        <a href="https://www.tiktok.com/@warungrizkysatrio" target="_blank" class="social-link tiktok">
-          <i class="fab fa-tiktok"></i>
-          <span>TikTok</span>
+        <section class="products-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Produk Unggulan</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <img
+                            class="product-icon-img"
+                            src="images/svg-file/indomie.svg"
+                            alt="Mie Instan"
+                            loading="lazy"
+                        />
+                        <h3>Mie Instan</h3>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            class="product-icon-img"
+                            src="images/svg-file/rice-cooker-svgrepo-com.svg"
+                            alt="Beras"
+                            loading="lazy"
+                        />
+                        <h3>Beras</h3>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            class="product-icon-img"
+                            src="images/svg-file/telur.svg"
+                            alt="Telur"
+                            loading="lazy"
+                        />
+                        <h3>Telur</h3>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            class="product-icon-img"
+                            src="images/svg-file/sabun.svg"
+                            alt="Sabun"
+                            loading="lazy"
+                        />
+                        <h3>Sabun</h3>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            class="product-icon-img"
+                            src="images/svg-file/minuman.svg"
+                            alt="Minuman"
+                            loading="lazy"
+                        />
+                        <h3>Minuman</h3>
+                    </div>
+
+                    <div class="product-card">
+                        <img
+                            class="product-icon-img"
+                            src="images/svg-file/rokok.svg"
+                            alt="Rokok"
+                            loading="lazy"
+                        />
+                        <h3>Rokok</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section section-padding">
+            <div class="container">
+                <h2 class="section-title">Lokasi Kami</h2>
+                <div class="map-container">
+                    <iframe
+                        src="https://maps.google.com/maps?q=-5.344344606073777,%20104.76591450268958&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section-padding">
+            <div class="container">
+                <div class="card">
+                    <h2 class="section-title">Hubungi Kami</h2>
+                    <div class="contact-info">
+                        <div class="contact-item-card">
+                            <div class="contact-icon-box">📞</div>
+                            <div class="contact-text-box">
+                                <h4>Nomor Telepon / WA</h4>
+                                <p>+62 812-8562-7911</p>
+                                <p>+62 856-9442-3177</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-card">
+                            <div class="contact-icon-box">✉️</div>
+                            <div class="contact-text-box">
+                                <h4>Email Resmi</h4>
+                                <p>warungrizkysatrio@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item-card">
+                            <div class="contact-icon-box">📍</div>
+                            <div class="contact-text-box">
+                                <h4>Alamat Toko</h4>
+                                <p>Tanggamus, Lampung 35377</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a
+            href="https://wa.me/6281285627911?text=Halo%20Warung%20Rizky%20Satrio..."
+            class="floating-wa"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+        >
+            <svg viewBox="0 0 448 512">
+                <path
+                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+                />
+            </svg>
         </a>
-        <a href="https://www.instagram.com" target="_blank" class="social-link instagram">
-          <i class="fab fa-instagram"></i>
-          <span>Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61574912243676" target="_blank" class="social-link facebook">
-          <i class="fab fa-facebook-f"></i>
-          <span>Facebook</span>
-        </a>
-      </div>
-    </div>
-  </footer>
 
-  <script>
-    // Theme toggle functionality
-    document.addEventListener('DOMContentLoaded', () => {
-      const themeToggle = document.getElementById('theme-toggle');
-      const htmlElement = document.documentElement;
-      
-      // Check for saved theme preference or use browser preference
-      const savedTheme = localStorage.getItem('theme');
-      const browserPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      // Set initial theme
-      if (savedTheme) {
-        htmlElement.setAttribute('data-theme', savedTheme);
-      } else if (browserPrefersDark) {
-        htmlElement.setAttribute('data-theme', 'dark');
-      } else {
-        htmlElement.setAttribute('data-theme', 'light');
-      }
-      
-      // Toggle theme function
-      function toggleTheme() {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        htmlElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-      }
-      
-      // Event listener for theme toggle button
-      themeToggle.addEventListener('click', toggleTheme);
-      
-      // Navbar scroll effect
-      const navbar = document.querySelector('.navbar');
-      
-      function updateNavbar() {
-        if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
-          navbar.style.backgroundColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--color-background').trim();
-          navbar.style.boxShadow = getComputedStyle(document.documentElement)
-            .getPropertyValue('--shadow-md');
-        } else {
-          navbar.classList.remove('scrolled');
-          navbar.style.backgroundColor = 'rgba(var(--color-background-rgb), 0.8)';
-          navbar.style.boxShadow = 'none';
-        }
-      }
-      
-      window.addEventListener('scroll', updateNavbar);
-      updateNavbar();
-      
-      // Scroll reveal animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const revealOnScroll = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealOnScroll.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-      
-      // Observe elements to animate
-      const animatedElements = document.querySelectorAll('.gallery-item, .card, .section-title');
-      animatedElements.forEach(element => {
-        revealOnScroll.observe(element);
-      });
-      
-      // Apply staggered animation to gallery items
-      document.querySelectorAll('.gallery-item').forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.1}s`;
-      });
-    });
-    
-    // Opening/Closing Status Check
-    function checkOpeningStatus() {
-      const statusElement = document.getElementById('current-status');
-      if (!statusElement) return;
-      
-      const now = new Date();
-      const hour = now.getHours();
-      
-      // Operating hours: 08:00 - 18:00
-      if (hour >= 8 && hour < 18) {
-        statusElement.textContent = '🟢 Buka Sekarang!';
-        statusElement.classList.add('status-open');
-      } else {
-        statusElement.textContent = '🔴 Tutup';
-        statusElement.classList.add('status-closed');
-      }
-    }
-    
-    // Run status check on load
-    checkOpeningStatus();
-    
-    // Update status every minute
-    setInterval(checkOpeningStatus, 60000);
-  </script>
-</body>
+        <footer class="footer">
+            <div class="container">
+                <p>© 2026 Warung Rizky Satrio. All rights reserved.</p>
+                <div class="social-media">
+                    <a
+                        href="https://www.tiktok.com/@warungrizkysatrio"
+                        target="_blank"
+                        class="social-link"
+                        >TikTok</a
+                    >
+                    <a
+                        href="https://www.instagram.com"
+                        target="_blank"
+                        class="social-link"
+                        >Instagram</a
+                    >
+                    <a
+                        href="https://www.facebook.com/profile.php?id=61574912243676"
+                        target="_blank"
+                        class="social-link"
+                        >Facebook</a
+                    >
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // Logic Theme Toggle
+                const themeToggle = document.getElementById("theme-toggle");
+                const htmlElement = document.documentElement;
+
+                const savedTheme =
+                    localStorage.getItem("theme") ||
+                    (window.matchMedia("(prefers-color-scheme: dark)").matches
+                        ? "dark"
+                        : "light");
+                htmlElement.setAttribute("data-theme", savedTheme);
+
+                themeToggle.addEventListener("click", () => {
+                    const currentTheme = htmlElement.getAttribute("data-theme");
+                    const newTheme =
+                        currentTheme === "light" ? "dark" : "light";
+                    htmlElement.setAttribute("data-theme", newTheme);
+                    localStorage.setItem("theme", newTheme);
+                });
+
+                // Logic Carousel / Image Slider
+                const track = document.querySelector(".carousel-track");
+                const slides = Array.from(track.children);
+                const nextButton = document.querySelector(".carousel-btn.next");
+                const prevButton = document.querySelector(".carousel-btn.prev");
+                const dotsContainer = document.querySelector(".carousel-dots");
+                const dots = Array.from(dotsContainer.children);
+
+                let currentIndex = 0;
+
+                const updateSlider = (index) => {
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                    dots.forEach((dot) => dot.classList.remove("active"));
+                    dots[index].classList.add("active");
+                    currentIndex = index;
+                };
+
+                nextButton.addEventListener("click", () => {
+                    let index =
+                        currentIndex === slides.length - 1
+                            ? 0
+                            : currentIndex + 1;
+                    updateSlider(index);
+                });
+
+                prevButton.addEventListener("click", () => {
+                    let index =
+                        currentIndex === 0
+                            ? slides.length - 1
+                            : currentIndex - 1;
+                    updateSlider(index);
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener("click", () => updateSlider(index));
+                });
+
+                // Swipe support mobile
+                let startX = 0;
+                track.addEventListener(
+                    "touchstart",
+                    (e) => (startX = e.touches[0].clientX),
+                );
+                track.addEventListener("touchend", (e) => {
+                    const endX = e.changedTouches[0].clientX;
+                    if (startX - endX > 50) nextButton.click();
+                    if (endX - startX > 50) prevButton.click();
+                });
+            });
+        </script>
+    </body>
 </html>
